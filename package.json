@@ -1,6 +1,6 @@
 {
   "name": "rename-dll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI for renaming DLL files on Windows, generating a new .lib file",
   "main": "index.js",
   "dependencies": {},
