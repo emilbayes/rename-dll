@@ -12,7 +12,7 @@ var prefixDest = path.isAbsolute(dest) ? '' : process.cwd()
 
 var definitions = spawn('dumpbin', ['/EXPORTS', path.join(prefixSrc, src)])
 
-var functionRegex = /^\s+(\d+)\s+\d+\s+[A-Z0-9]+\s+([^ ]+(?: = [^ ]+))\s+$/i
+var functionRegex = /^\s*(\d+)\s+[A-Z0-9]+\s+[A-Z0-9]{8}\s+([^ ]+(?: = [^ ]+)?)\s*$/i
 
 var exports = definitions.stdout.toString()
   .split('\n')
