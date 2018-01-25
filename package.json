@@ -6,6 +6,9 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {},
+  "bin": {
+    "rename-dll": "index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/emilbayes/rename-dll.git"
