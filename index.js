@@ -35,6 +35,10 @@ var prefixSrc = path.isAbsolute(src) ? '' : process.cwd()
 var prefixDest = path.isAbsolute(dest) ? '' : process.cwd()
 
 var definitions = spawn('dumpbin', ['/EXPORTS', path.join(prefixSrc, src)], {stdio: ['ignore', 'pipe', 'inherit']})
+if (definitions.error) {
+  console.error(definitions.error)
+  process.exit(2)
+}
 
 var functionRegex = /^\s*(\d+)\s+[A-Z0-9]+\s+[A-Z0-9]{8}\s+([^ ]+(?: = [^ ]+)?)\s*$/i
 
@@ -58,4 +62,9 @@ var defPath = path.join(defDirname, defBasename)
 fs.writeFileSync(defPath, defContent)
 
 var lib = spawn('lib', ['/MACHINE:' + arch, '/DEF:' + defBasename], {cwd: defDirname}, {stdio: ['ignore', 'pipe', 'inherit']})
+if (lib.error) {
+  console.error(lib.error)
+  process.exit(2)
+}
+
 fs.renameSync(src, dest)
