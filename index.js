@@ -26,7 +26,7 @@ if (dest == null) {
   process.exit(1)
 }
 
-if ([].indexOf(arch) < 0) {
+if (['X86', 'X64', 'ARM', 'ARM64'].indexOf(arch) < 0) {
   console.error('Invalid architecture')
   process.exit(1)
 }
