@@ -14,6 +14,14 @@ the `.dll` file. If you want to rename the DLL, eg. to version it and avoid
 collisions (DLL Hell), you need to regenerate this `.lib` file, which is binary.
 This module does this automatically for you!
 
+This module depends on the `dumpbin` and `lib` utilities, which come bundled
+with Visual Studio. You may need to include the `bin` folder in your path. Here
+is how to do it for MSVS 14.0 (eg. on AppVeyor)
+
+```
+SET PATH=C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin;%PATH%
+```
+
 ## API
 
 ### `rename-dll [--arch=x64] SRC DEST`
