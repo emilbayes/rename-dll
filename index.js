@@ -10,8 +10,8 @@ var argv = require('minimist')(process.argv, {
   }
 })
 
-var src = argv._[0]
-var dest = argv._[1]
+var src = argv._[2]
+var dest = argv._[3]
 var arch = argv.arch.toUpperCase()
 
 if (arch == 'IA32') arch = 'X86'
