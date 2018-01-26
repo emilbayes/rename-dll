@@ -4,7 +4,7 @@ var path = require('path')
 var fs = require('fs')
 
 var argv = require('minimist')(process.argv, {
-  string: ['arch']
+  string: ['arch'],
   default: {
     'arch': 'X64'
   }
