@@ -3,9 +3,33 @@ var spawn = require('child_process').spawnSync
 var path = require('path')
 var fs = require('fs')
 
-var src = process.argv[2]
-var dest = process.argv[3]
-var arch = 'X64'
+var argv = require('minimist')(process.argv, {
+  string: ['arch']
+  default: {
+    'arch': 'X64'
+  }
+})
+
+var src = argv._[0]
+var dest = argv._[1]
+var arch = argv.arch.toUpperCase()
+
+if (arch == 'IA32') arch = 'X86'
+
+if (src == null) {
+  console.error('Missing SRC argument')
+  process.exit(1)
+}
+
+if (dest == null) {
+  console.error('Missing DEST argument')
+  process.exit(1)
+}
+
+if ([].indexOf(arch) < 0) {
+  console.error('Invalid architecture')
+  process.exit(1)
+}
 
 var prefixSrc = path.isAbsolute(src) ? '' : process.cwd()
 var prefixDest = path.isAbsolute(dest) ? '' : process.cwd()

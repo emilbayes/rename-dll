@@ -16,9 +16,11 @@ This module does this automatically for you!
 
 ## API
 
-### `rename-dll ./path/to/source.dll ./path/to/new.dll`
+### `rename-dll [--arch=x64] SRC DEST`
 
-Generate a `.def` file based on `source.dll`,
+Generate a `.def` file based on `SRC`, compile it to a `.lib` file next to
+`DEST` and rename the `SRC` to `DEST`. Optionally choose an architecture;
+possible values are `x86`/`ia32`, `x64`, `arm` and `arm64`.
 
 ## Install
 
