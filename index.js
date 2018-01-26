@@ -21,7 +21,7 @@ var exports = definitions.stdout.toString()
   .map(m => ({ordinal: m[1], fn: m[2]}))
 
 var defContent = `
-LIBRARY "${path.basename(dest, '.dll')}"
+LIBRARY "${path.basename(dest)}"
 EXPORTS
 ${exports.map(e => e.fn.replace(/ += +/g, '=') + ' @' + e.ordinal).join('\n')}
 `
