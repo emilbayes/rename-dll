@@ -34,7 +34,7 @@ if (['X86', 'X64', 'ARM', 'ARM64'].indexOf(arch) < 0) {
 var prefixSrc = path.isAbsolute(src) ? '' : process.cwd()
 var prefixDest = path.isAbsolute(dest) ? '' : process.cwd()
 
-var definitions = spawn('dumpbin', ['/EXPORTS', path.join(prefixSrc, src)])
+var definitions = spawn('dumpbin', ['/EXPORTS', path.join(prefixSrc, src)], {stdio: ['ignore', 'pipe', 'inherit']})
 
 var functionRegex = /^\s*(\d+)\s+[A-Z0-9]+\s+[A-Z0-9]{8}\s+([^ ]+(?: = [^ ]+)?)\s*$/i
 
@@ -57,5 +57,5 @@ var defPath = path.join(defDirname, defBasename)
 
 fs.writeFileSync(defPath, defContent)
 
-var lib = spawn('lib', ['/MACHINE:' + arch, '/DEF:' + defBasename], {cwd: defDirname})
+var lib = spawn('lib', ['/MACHINE:' + arch, '/DEF:' + defBasename], {cwd: defDirname}, {stdio: ['ignore', 'pipe', 'inherit']})
 fs.renameSync(src, dest)
